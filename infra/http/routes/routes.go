@@ -13,10 +13,7 @@ type Route interface {
 
 func NewRoutes(engine *gin.Engine) Routes {
 	return Routes{
-		PatientRoutes{
-			engine:            engine,
-			patientController: controllers.NewPatientController(),
-		},
+		NewPatientRoutes(engine, controllers.NewPatientController()),
 	}
 }
 

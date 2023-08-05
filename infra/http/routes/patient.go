@@ -10,6 +10,13 @@ type PatientRoutes struct {
 	patientController controllers.PatientController
 }
 
+func NewPatientRoutes(engine *gin.Engine, controller controllers.PatientController) PatientRoutes {
+	return PatientRoutes{
+		engine:            engine,
+		patientController: controller,
+	}
+}
+
 func (p PatientRoutes) Setup() {
 	p.engine.GET("/patients/", p.patientController.GetAll)
 	p.engine.GET("/patients/:id", p.patientController.GetOne)
