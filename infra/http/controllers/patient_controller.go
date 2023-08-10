@@ -1,12 +1,18 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/psi-anamnese/psi-anamnese-be/application/services"
+)
 
 type PatientController struct {
+	patientService services.PatientService
 }
 
-func NewPatientController() PatientController {
-	return PatientController{}
+func NewPatientController(service services.PatientService) PatientController {
+	return PatientController{
+		patientService: service,
+	}
 }
 
 func (p PatientController) GetOne(c *gin.Context) {
