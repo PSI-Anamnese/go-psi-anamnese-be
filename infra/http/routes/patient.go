@@ -10,6 +10,8 @@ type PatientRoutes struct {
 	patientController controllers.PatientController
 }
 
+var _ Route = (*PatientRoutes)(nil)
+
 func NewPatientRoutes(engine *gin.Engine, controller controllers.PatientController) PatientRoutes {
 	return PatientRoutes{
 		engine:            engine,
