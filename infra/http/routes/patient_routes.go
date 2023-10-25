@@ -5,12 +5,12 @@ import (
 	"github.com/psi-anamnese/psi-anamnese-be/infra/http/controllers"
 )
 
+var _ Route = (*PatientRoutes)(nil)
+
 type PatientRoutes struct {
 	engine            *gin.Engine
 	patientController controllers.PatientController
 }
-
-var _ Route = (*PatientRoutes)(nil)
 
 func NewPatientRoutes(engine *gin.Engine, controller controllers.PatientController) PatientRoutes {
 	return PatientRoutes{
