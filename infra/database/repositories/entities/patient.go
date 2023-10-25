@@ -1,8 +1,6 @@
 package entities
 
-import "github.com/psi-anamnese/psi-anamnese-be/infra/database/repositories"
-
-var _ repositories.Entity = (*Patient)(nil)
+var _ Entity = (*Patient)(nil)
 
 type Patient struct {
 	id string

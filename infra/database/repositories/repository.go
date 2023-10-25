@@ -1,10 +1,8 @@
 package repositories
 
-type Entity interface {
-	GetId() string
-}
+import "github.com/psi-anamnese/psi-anamnese-be/infra/database/repositories/entities"
 
-type Repository[K string, E Entity] interface {
+type Repository[K string, E entities.Entity] interface {
 	Save(E) (E, error)
 	Update(E) (E, error)
 	Delete(K) error
