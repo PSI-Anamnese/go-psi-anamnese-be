@@ -2,6 +2,8 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/psi-anamnese/psi-anamnese-be/application/services"
+	"github.com/psi-anamnese/psi-anamnese-be/infra/database/repositories"
 	"github.com/psi-anamnese/psi-anamnese-be/infra/http/controllers"
 )
 
@@ -12,11 +14,18 @@ type PatientRoutes struct {
 	patientController controllers.PatientController
 }
 
-func NewPatientRoutes(engine *gin.Engine, controller controllers.PatientController) PatientRoutes {
+func newPatientRoutes(engine *gin.Engine, controller controllers.PatientController) PatientRoutes {
 	return PatientRoutes{
 		engine:            engine,
 		patientController: controller,
 	}
+}
+
+func NewPatientRoutes(engine *gin.Engine) PatientRoutes {
+	return newPatientRoutes(engine, controllers.NewPatientController(
+		services.NewPatientService(
+			repositories.NewPatientRepository(),
+		)))
 }
 
 func (p PatientRoutes) Setup() {
